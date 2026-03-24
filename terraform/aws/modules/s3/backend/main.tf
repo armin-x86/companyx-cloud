@@ -133,9 +133,9 @@ data "aws_iam_policy_document" "terraform_state" {
       test     = "StringNotLike"
       variable = "aws:PrincipalArn"
       values = [
-        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_administrator_*",
-        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
-        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:admin"
+        "arn:aws:iam::${var.aws_account_id}:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_administrator_*",
+        "arn:aws:iam::${var.aws_account_id}:root",
+        "arn:aws:iam::${var.aws_account_id}:user/${var.terraform_state_admin_user_name}"
       ]
     }
   }
