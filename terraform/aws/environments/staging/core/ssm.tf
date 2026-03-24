@@ -1,5 +1,5 @@
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_patch_baseline
-module "ubuntu_patch_manager" {
+module "al2023_patch_manager" {
   source           = "../../../modules/ssm/patch_manager"
   namespace        = module.config.global.namespace
   name             = "al2023"
