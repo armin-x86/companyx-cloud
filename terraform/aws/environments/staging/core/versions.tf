@@ -9,13 +9,15 @@ terraform {
   }
 
   # For the first run you will need to comment this as backend S3 is not yet created.
-  # After creation of the bucket you can uncomment this and migrate the state to the s3.
+  # After creation of the bucket you can uncomment this and migrate the state to the s3 by running:
+  # terraform init -migrate-state
 
-  # backend "s3" {
-  #   key            = "core/eu-west-1/terraform.tfstate"
-  #   bucket         = "phrase-infra-terraform-staging-8f402f"
-  #   region         = "eu-west-1"
-  #   dynamodb_table = "phrase-infra-terraform-staging-8f402f"
-  #   encrypt        = true
-  # }
+  backend "s3" {
+    key    = "core/eu-west-1/terraform.tfstate"
+    bucket = "phrase-infra-terraform-staging-8f402f"
+    region = "eu-west-1"
+    #dynamodb_table = "phrase-infra-terraform-staging-8f402f"
+    encrypt      = true
+    use_lockfile = true
+  }
 }

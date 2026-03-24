@@ -28,7 +28,7 @@ module "vpc_endpoints_s3" {
   business_unit       = module.config.global.business_unit
   namespace           = module.config.global.namespace
   vpc_id              = module.vpc.vpc_id
-  vpc_name            = module.config.vpc.app-ap-1.name
+  vpc_name            = module.config.vpc.app-euw-1.name
   vpc_route_table_ids = concat(module.vpc.private_route_table_ids, module.vpc.public_route_table_ids)
   tags                = module.config.default_tags
 }

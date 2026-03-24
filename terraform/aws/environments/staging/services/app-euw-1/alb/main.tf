@@ -110,7 +110,7 @@ module "app_euw_1_alb" {
   tags = local.tags
 }
 
-resource "aws_route53_record" "phrase_lb" {
+resource "aws_route53_record" "assingment" {
   zone_id = data.aws_route53_zone.phrase.zone_id
   name    = local.assignment_subdomain
   type    = "A"

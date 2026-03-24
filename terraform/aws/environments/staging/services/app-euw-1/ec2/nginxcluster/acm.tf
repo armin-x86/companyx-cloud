@@ -15,5 +15,7 @@ module "acm" {
   zone_id           = data.aws_route53_zone.zone.zone_id
   validation_method = "DNS"
   key_algorithm     = "EC_prime256v1"
-  tags              = local.tags
+  tags = merge(local.tags, {
+    "CertName" = module.config.r53_zone
+  })
 }

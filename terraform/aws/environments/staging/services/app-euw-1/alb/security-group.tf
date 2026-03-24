@@ -1,6 +1,7 @@
 locals {
   ports = {
     https = 443
+    http  = 80
   }
 }
 
@@ -77,7 +78,7 @@ module "app_euw_1_alb_external_clients_sg" {
 
   name            = "${module.config.vpc.app-euw-1.name}-alb-external-clients-sg"
   use_name_prefix = false
-  description     = "Internet clients to ${module.config.vpc.app-euw-1.name}-alb-external"
+  description     = "External public clients to ${module.config.vpc.app-euw-1.name}-alb-external"
   vpc_id          = data.aws_vpc.app_euw_1.id
 
   ingress_with_cidr_blocks = [

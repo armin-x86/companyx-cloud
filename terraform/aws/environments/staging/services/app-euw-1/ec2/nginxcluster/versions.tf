@@ -9,10 +9,11 @@ terraform {
   }
 
   backend "s3" {
-    key            = "ec2/app-euw-1/ec2/nginxcluster/terraform.tfstate"
-    bucket         = "phrase-infra-terraform-staging-8f402f"
-    region         = "eu-west-1"
-    dynamodb_table = "phrase-infra-terraform-staging-8f402f"
-    encrypt        = true
+    key    = "ec2/app-euw-1/ec2/nginxcluster/terraform.tfstate"
+    bucket = "phrase-infra-terraform-staging-8f402f"
+    region = "eu-west-1"
+    #dynamodb_table = "phrase-infra-terraform-staging-8f402f"
+    encrypt      = true
+    use_lockfile = true
   }
 }

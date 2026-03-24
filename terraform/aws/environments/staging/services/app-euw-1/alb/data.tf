@@ -14,10 +14,11 @@ data "aws_subnets" "app_euw_1_public" {
 }
 
 data "aws_acm_certificate" "phrase" {
-  domain    = "*.${module.config.global.root_domain}"
-  statuses  = ["ISSUED"]
-  types     = ["AMAZON_ISSUED"]
-  key_types = ["EC_prime256v1"]
+  domain      = module.config.global.root_domain
+  statuses    = ["ISSUED"]
+  types       = ["AMAZON_ISSUED"]
+  key_types   = ["EC_prime256v1"] # aws_acm_certificate doesn't return all certs by default, key_types should be specified to find the cert
+  most_recent = true
 }
 
 data "aws_route53_zone" "phrase" {
