@@ -1,0 +1,37 @@
+---
+
+- name: General | Ensure Amazon SSM Agent is installed and running
+  tags: ["general", "ssm"]
+  block:
+    - name: General | Check SSM agent binary path
+      ansible.builtin.stat:
+        path: /usr/bin/amazon-ssm-agent
+      register: general_ssm_agent_binary
+
+    - name: General | Check SSM agent systemd unit file
+      ansible.builtin.stat:
+        path: /usr/lib/systemd/system/amazon-ssm-agent.service
+      register: general_ssm_agent_unit
+
+    - name: General | Install SSM agent from Amazon-published RPM
+      when:
+        - not general_ssm_agent_binary.stat.exists | default(false)
+          or not general_ssm_agent_unit.stat.exists | default(false)
+      notify: General | Enable and start amazon-ssm-agent
+      register: general_ssm_agent_install
+      ansible.builtin.package:
+        name: "{{ general_ssm_agent_rpm_url }}"
+        state: present
+
+    - name: General | Flush handlers after SSM agent install
+      ansible.builtin.meta: flush_handlers
+
+    - name: General | Ensure amazon-ssm-agent is enabled and started
+      when: >-
+        (general_ssm_agent_install.skipped | default(false))
+        or not (general_ssm_agent_install.changed | default(false))
+      # handler is not trigered here so it won't cause an unwanted restart and 1 change in final report.
+      ansible.builtin.systemd:
+        name: amazon-ssm-agent
+        enabled: true
+        state: started

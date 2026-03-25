@@ -9,5 +9,5 @@ module "s3_backend" {
   tags                                 = module.config.default_tags
   access_log_expiry_days_s3            = 7
   access_log_expiry_days_vpc_flow_logs = 14
-  bucket_name_suffix                   = "8f402v"
+  bucket_name_suffix                   = "8f403v"
 }

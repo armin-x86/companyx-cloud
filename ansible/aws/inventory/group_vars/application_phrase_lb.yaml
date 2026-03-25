@@ -1,0 +1,3 @@
+---
+# Application hosts that should run the phrase nginx container.
+nginx_container_runtime: podman

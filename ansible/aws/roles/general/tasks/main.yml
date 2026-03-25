@@ -1,0 +1,17 @@
+---
+
+- name: General | Verify Amazon Linux
+  ansible.builtin.import_tasks: assert_amazon_linux.yml
+  tags: ["general", "always"]
+
+- name: General | Include OS update tasks
+  ansible.builtin.import_tasks: 10_os_update.yml
+  tags: ["general", "os"]
+
+- name: General | Include SSM agent tasks
+  ansible.builtin.import_tasks: 20_ssm_agent.yml
+  tags: ["general", "ssm"]
+
+- name: General | Include Podman tasks
+  ansible.builtin.import_tasks: 30_podman.yml
+  tags: ["general", "podman", "container"]

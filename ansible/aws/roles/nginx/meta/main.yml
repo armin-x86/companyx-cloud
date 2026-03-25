@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: phrase infra team
+  description: Deploy nginx container for phrase application
+  license: Apache-2.0
+  min_ansible_version: "2.15"
+  platforms:
+    - name: Amazon
+      versions:
+        - all
+  galaxy_tags:
+    - nginx
+    - podman
+    - container
+
+collections:
+  - ansible.posix
+  - containers.podman
+
+dependencies: []

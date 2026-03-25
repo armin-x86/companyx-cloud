@@ -108,6 +108,12 @@ variable "iam_role_name_suffix" {
   default     = ""
 }
 
+variable "iam_role_policies_extra" {
+  description = "Additional IAM managed policy ARNs to attach to the instance role (merged with AmazonSSMManagedInstanceCore when create_iam_instance_profile is true)"
+  type        = map(string)
+  default     = {}
+}
+
 variable "tags" {
   description = "A map of tags to assign to the EC2 instance"
   type        = any

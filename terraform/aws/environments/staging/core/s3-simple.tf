@@ -30,6 +30,23 @@ locals {
       ]
       append_environment_suffix = true
     }
+    # Staging area for amazon.aws.aws_ssm (Ansible): presigned S3 uploads/downloads for module payloads.
+    ansible-ssm = {
+      policy                    = data.aws_iam_policy_document.ansible_ssm_bucket_access.json
+      sse_algorithm             = "AES256"
+      versioning_status         = "Suspended"
+      enable_logging            = false
+      append_environment_suffix = true
+      lifecycle_rules = [
+        {
+          id      = "expire-temp-ansible-ssm-objects"
+          enabled = true
+          expiration = {
+            days = 7
+          }
+        }
+      ]
+    }
   }
 }
 

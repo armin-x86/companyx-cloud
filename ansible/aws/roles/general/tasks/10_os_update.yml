@@ -1,0 +1,14 @@
+---
+- name: General | Upgrade all installed packages (Amazon Linux)
+  when: general_os_update_enabled | bool
+  tags: ["general", "os"]
+  ansible.builtin.package:
+    name: '*'
+    state: latest
+    update_cache: true
+
+- name: General | Report skipped OS updates
+  when: not (general_os_update_enabled | bool)
+  ansible.builtin.debug:
+    msg: OS package upgrades skipped (general_os_update_enabled is false).
+  tags: ["general", "os"]

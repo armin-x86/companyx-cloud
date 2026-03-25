@@ -69,7 +69,7 @@ module "app_euw_1_alb_internal_clients_sg" {
   tags = local.tags
 }
 
-# Public internet HTTPS (staging). Narrow this down for production.
+# Public internet HTTPS (staging). we may narrow this down for production.
 # trivy:ignore:avd-aws-0104
 # tfsec:ignore:aws-ec2-no-public-ingress-sgr
 module "app_euw_1_alb_external_clients_sg" {
