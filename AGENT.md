@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repository provisions and configures AWS infrastructure for `phrase-cloud` using Terraform and, later, Ansible.
+This repository provisions and configures AWS infrastructure for `phrase-cloud` using Terraform and Ansible.
 
 The intended delivery flow is:
 
@@ -21,33 +21,57 @@ This file instructs coding agents how to work safely and consistently in this re
 
 ```text
 phrase-cloud/
+├── AGENT.md
+├── README.md
 ├── ansible/
 │   └── aws/
+│       ├── README.md
+│       ├── ansible.cfg
+│       ├── inventory/
+│       │   ├── aws_ec2.yml
+│       │   ├── group_vars/
+│       │   │   ├── all.yaml
+│       │   │   ├── application_phrase_lb.yaml
+│       │   │   └── aws_ec2.yml
+│       │   └── localhost.yml
+│       ├── main.yaml
+│       ├── requirements.yml
+│       └── roles/
+│           ├── general/
+│           └── nginx/
 ├── snippets/
 │   └── aws/
+│       └── vpc/
+│           └── default-vpcs-deletion.sh
 ├── terraform/
 │   └── aws/
+│       ├── README.md
 │       ├── environments/
 │       │   ├── global/
 │       │   │   └── configs/
-│       │   ├── staging/
-│       │   │   ├── configs/
-│       │   │   ├── core/
-│       │   │   └── services/
-│       │   │       └── app-euw-1/
-│       │   │           ├── alb/
-│       │   │           ├── ec2/
-│       │   │           │   └── nginxcluster/
-│       │   │           └── vpc/
-│       │   └── main.tf
+│       │   └── staging/
+│       │       ├── configs/
+│       │       ├── core/
+│       │       └── services/
+│       │           └── app-euw-1/
+│       │               ├── alb/
+│       │               ├── ec2/
+│       │               │   └── nginxcluster/
+│       │               └── vpc/
 │       └── modules/
 │           ├── ec2/
+│           ├── lb/
+│           │   └── alb/
 │           ├── r53/
 │           ├── s3/
 │           │   ├── backend/
 │           │   └── simple/
+│           ├── secrets/
+│           ├── ssm/
+│           │   └── patch_manager/
 │           └── vpc/
 │               ├── endpoints/
+│               │   └── s3/
 │               ├── peering/
 │               └── simple/
 └── trivy.yaml
@@ -230,19 +254,19 @@ Typical pattern:
 - Never hardcode secrets
 - Use SSM/parameters
 - Mark outputs sensitive
+- For Ansible over SSM, keep using the dedicated S3 transfer bucket and IAM executor-role model from `environments/staging/core`.
 
 ---
 
 ## Ansible Guidance
 
-Planned:
+Current structure:
 
 ```text
 ansible/aws/
-├── inventories/
+├── inventory/
 ├── roles/
-│   ├── common/
-│   ├── docker/
+│   ├── general/
 │   └── nginx/
 ├── main.yaml
 ```
@@ -250,7 +274,10 @@ ansible/aws/
 Rules:
 
 - Use dynamic AWS inventory
-- Separate common vs nginx roles
+- Use `roles/general` for generic host bootstrap concerns
+- Use `roles/nginx` only for nginx-specific hosts/configuration
+- Keep dynamic inventory group naming stable (for example `application_phrase_lb` for nginx EC2 hosts)
+- For SSM connection via `amazon.aws.aws_ssm`, keep `ansible_host` mapped to instance id in inventory compose
 - Keep roles idempotent
 - Avoid hardcoding values
 
@@ -298,7 +325,7 @@ This repo is:
 - Security-conscious
 - Cost-aware
 - Pre-commit + Trivy enforced
-- Future Ansible-managed
+- Ansible-managed
 
 Agents must prioritize:
 

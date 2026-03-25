@@ -1,0 +1,10 @@
+---
+# see tasks/assert_amazon_linux.yml
+general_supported_distribution: Amazon
+
+general_os_update_enabled: true
+
+general_ssm_agent_rpm_url: >-
+  https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+
+general_container_runtime: podman

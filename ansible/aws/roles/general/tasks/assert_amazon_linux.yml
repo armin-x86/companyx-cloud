@@ -1,0 +1,9 @@
+---
+# Included from general (bootstrap) and nginx so tagged-only runs still validate the OS.
+- name: General | Require Amazon Linux
+  ansible.builtin.assert:
+    that:
+      - ansible_facts['distribution'] == general_supported_distribution
+    fail_msg: >-
+      This playbook only supports Amazon Linux. Found distribution={{ ansible_facts.distribution }}
+      version={{ ansible_facts.distribution_version | default('unknown') }}.

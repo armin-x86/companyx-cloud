@@ -40,9 +40,11 @@ module "ec2_instance" {
   iam_instance_profile        = var.iam_instance_profile
   iam_role_name               = "${var.instance_name}${length(var.iam_role_name_suffix) > 0 ? "-${var.iam_role_name_suffix}" : ""}-role"
   iam_role_path               = "/"
-  iam_role_policies = {
-    AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-  }
+  iam_role_policies = var.create_iam_instance_profile ? merge(
+    {
+      AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+    },
+  var.iam_role_policies_extra) : {}
 
   # Instance User Data
   user_data = var.user_data

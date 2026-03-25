@@ -1,0 +1,7 @@
+---
+- name: General | Enable and start amazon-ssm-agent
+  ansible.builtin.systemd:
+    name: amazon-ssm-agent
+    enabled: true
+    state: started
+    daemon_reload: true

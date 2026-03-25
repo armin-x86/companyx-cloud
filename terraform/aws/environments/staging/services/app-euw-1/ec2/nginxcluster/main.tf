@@ -21,13 +21,14 @@ module "nginx" {
     for idx, subnet_id in local.private_subnet_ids :
     "${local.app_name}-${idx + 1}" => subnet_id
   }
-  instance_name               = each.key
-  subnet_id                   = each.value
-  vpc_security_group_ids      = [module.security_group.security_group_id]
-  key_name                    = local.key_name
-  user_data                   = file("${path.cwd}/user_data.sh")
-  iam_instance_profile        = aws_iam_instance_profile.this.name
-  create_iam_instance_profile = false
+  instance_name          = each.key
+  subnet_id              = each.value
+  vpc_security_group_ids = [module.security_group.security_group_id]
+  key_name               = local.key_name
+  user_data              = file("${path.cwd}/user_data.sh")
+  iam_role_policies_extra = {
+    NginxClusterInstanceSSM = aws_iam_policy.instance_ssm.arn
+  }
   root_block_device = [{
     volume_size = 30
     volume_type = "gp3"

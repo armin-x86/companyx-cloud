@@ -88,13 +88,13 @@ module "app_euw_1_alb" {
       health_check = {
         enabled             = true
         interval            = 30
-        path                = "/"
+        path                = "/phrase"
         port                = "traffic-port"
         healthy_threshold   = 2
         unhealthy_threshold = 3
         timeout             = 5
         protocol            = "HTTP"
-        matcher             = "200-399"
+        matcher             = "200"
       }
     }
   }

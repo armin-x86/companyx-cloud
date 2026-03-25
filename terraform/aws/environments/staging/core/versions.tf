@@ -13,10 +13,9 @@ terraform {
   # terraform init -migrate-state
 
   backend "s3" {
-    key    = "core/eu-west-1/terraform.tfstate"
-    bucket = "phrase-infra-terraform-staging-8f402f"
-    region = "eu-west-1"
-    #dynamodb_table = "phrase-infra-terraform-staging-8f402f"
+    key          = "core/eu-west-1/terraform.tfstate"
+    bucket       = "phrase-infra-terraform-staging-8f403v"
+    region       = "eu-west-1"
     encrypt      = true
     use_lockfile = true
   }

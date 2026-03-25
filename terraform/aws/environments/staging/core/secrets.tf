@@ -1,11 +1,11 @@
 locals {
   app_secrets = {
-    phrase-infra = {
+    phrase-infra1 = {
       # Just a single secret to avoid leaving it empty. I real infra, we will have secrets
       # for our apps like, prometheus,grafana, semaphore and ...
       grafana = {}
     }
-    ecr-pullthroughcache = {
+    ecr-pullthroughcache1 = {
       "gitlab.com" = {
         application = "ecr"
         description = "Pull through credentials to fetch images from gitlab.com"

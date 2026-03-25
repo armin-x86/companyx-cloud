@@ -1,0 +1,15 @@
+# {{ ansible_managed }}
+server {
+    listen 8080;
+    listen [::]:8080;
+    server_name _;
+
+    location = {{ nginx_phrase_location }} {
+        default_type text/plain;
+        return 200 "{{ nginx_phrase_body | regex_replace('\"', '\\\"') }}";
+    }
+
+    location / {
+        return 404;
+    }
+}

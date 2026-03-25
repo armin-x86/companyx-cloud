@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: phrase infra team
+  description: Amazon Linux bootstrap (OS updates, SSM, Podman)
+  license: Apache-2.0
+  min_ansible_version: "2.15"
+  platforms:
+    - name: Amazon
+      versions:
+        - all
+  galaxy_tags:
+    - amazon
+    - ssm
+    - podman
+    - system
+
+collections:
+  - containers.podman
+
+dependencies: []

@@ -1,0 +1,9 @@
+---
+- name: General | Install Podman container runtime (Amazon Linux)
+  tags: ["general", "podman", "container"]
+  when: general_container_runtime == 'podman'
+  block:
+    - name: General | Install Podman package
+      ansible.builtin.package:
+        name: podman
+        state: present

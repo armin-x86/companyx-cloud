@@ -35,6 +35,7 @@
 | <a name="input_eip"></a> [eip](#input\_eip) | Whether to create an Elastic IP and associate it with the EC2 instance | `bool` | `false` | no |
 | <a name="input_iam_instance_profile"></a> [iam\_instance\_profile](#input\_iam\_instance\_profile) | The IAM instance profile to associate with the EC2 instance | `string` | `null` | no |
 | <a name="input_iam_role_name_suffix"></a> [iam\_role\_name\_suffix](#input\_iam\_role\_name\_suffix) | The IAM instance name suffix | `string` | `""` | no |
+| <a name="input_iam_role_policies_extra"></a> [iam\_role\_policies\_extra](#input\_iam\_role\_policies\_extra) | Additional IAM managed policy ARNs to attach to the instance role (merged with AmazonSSMManagedInstanceCore when create\_iam\_instance\_profile is true) | `map(string)` | `{}` | no |
 | <a name="input_ignore_ami_changes"></a> [ignore\_ami\_changes](#input\_ignore\_ami\_changes) | Whether to ignore the AMI configuration changes | `bool` | `true` | no |
 | <a name="input_image_owner"></a> [image\_owner](#input\_image\_owner) | OwnerId of the Image | `string` | `"amazon"` | no |
 | <a name="input_instance_architecture"></a> [instance\_architecture](#input\_instance\_architecture) | Architecture type for the instance (x86\_64 or arm64) | `string` | `"x86_64"` | no |

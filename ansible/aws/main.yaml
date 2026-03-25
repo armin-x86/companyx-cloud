@@ -1,0 +1,15 @@
+---
+
+- name: Bootstrap base OS and runtime
+  hosts: all:!local
+  gather_facts: true
+  become: true
+  roles:
+    - {role: general, tags: ["bootstrap", "general"]}
+
+- name: Deploy phrase nginx only on application hosts
+  hosts: application_phrase_lb
+  gather_facts: true
+  become: true
+  roles:
+    - { role: nginx, tags: ["nginx"]}
