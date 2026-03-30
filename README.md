@@ -1,6 +1,6 @@
-# phrase-cloud
+# companyx-cloud
 
-Base infrastructure and configuration for Phrase AWS workloads (Terraform + Ansible).
+Base infrastructure and configuration for ComapnyX AWS workloads (Terraform + Ansible).
 
 ## Documentation
 

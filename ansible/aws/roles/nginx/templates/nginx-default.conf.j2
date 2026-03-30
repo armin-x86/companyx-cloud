@@ -4,9 +4,9 @@ server {
     listen [::]:8080;
     server_name _;
 
-    location = {{ nginx_phrase_location }} {
+    location = {{ nginx_companyx_location }} {
         default_type text/plain;
-        return 200 "{{ nginx_phrase_body | regex_replace('\"', '\\\"') }}";
+        return 200 "{{ nginx_companyx_body | regex_replace('\"', '\\\"') }}";
     }
 
     location / {

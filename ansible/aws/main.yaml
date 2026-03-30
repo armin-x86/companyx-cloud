@@ -7,8 +7,8 @@
   roles:
     - {role: general, tags: ["bootstrap", "general"]}
 
-- name: Deploy phrase nginx only on application hosts
-  hosts: application_phrase_lb
+- name: Deploy companyx nginx only on application hosts
+  hosts: application_companyx_lb
   gather_facts: true
   become: true
   roles:

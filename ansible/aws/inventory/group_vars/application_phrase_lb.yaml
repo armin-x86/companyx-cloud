@@ -1,3 +1,3 @@
 ---
-# Application hosts that should run the phrase nginx container.
+# Application hosts that should run the companyx nginx container.
 nginx_container_runtime: podman

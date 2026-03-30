@@ -15,7 +15,7 @@
           - --version
       changed_when: false
 
-- name: Nginx | Deploy phrase nginx config and container
+- name: Nginx | Deploy companyx nginx config and container
   tags: ["nginx", "container"]
   block:
     - name: Nginx | Create directory for nginx bind mount
@@ -26,7 +26,7 @@
         group: root
         mode: "0755"
 
-    - name: Nginx | Render default vhost for phrase endpoint
+    - name: Nginx | Render default vhost for companyx endpoint
       ansible.builtin.template:
         src: nginx-default.conf.j2
         dest: "{{ nginx_config_path }}"
