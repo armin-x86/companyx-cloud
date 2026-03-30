@@ -10,5 +10,5 @@ Private-subnet EC2 instances have **no public IP** here; Ansible uses **`amazon.
 ## Inventory model
 
 - We use **dynamic inventory** with `amazon.aws.aws_ec2`.
-- The inventory creates a host group named **`application_phrase_lb`** from EC2 tags.
-- **`application_phrase_lb`** includes all nginx EC2 machines and is targeted by the nginx play.
+- The inventory creates a host group named **`application_companyx_lb`** from EC2 tags.
+- **`application_companyx_lb`** includes all nginx EC2 machines and is targeted by the nginx play.

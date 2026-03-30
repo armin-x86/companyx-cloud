@@ -2,8 +2,8 @@
 nginx_container_runtime: podman
 nginx_image: docker.io/nginxinc/nginx-unprivileged:1.27-alpine
 nginx_image_pull_policy: newer
-nginx_container_name: nginx-phrase
-nginx_config_dir: /etc/phrase-nginx
+nginx_container_name: nginx-companyx
+nginx_config_dir: /etc/companyx-nginx
 nginx_config_path: "{{ nginx_config_dir }}/default.conf"
-nginx_phrase_location: /phrase
-nginx_phrase_body: Phrase is up
+nginx_companyx_location: /companyx
+nginx_companyx_body: CompanyX is up

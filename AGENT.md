@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repository provisions and configures AWS infrastructure for `phrase-cloud` using Terraform and Ansible.
+This repository provisions and configures AWS infrastructure for `companyx-cloud` using Terraform and Ansible.
 
 The intended delivery flow is:
 
@@ -20,7 +20,7 @@ This file instructs coding agents how to work safely and consistently in this re
 ## Repository Layout
 
 ```text
-phrase-cloud/
+companyx-cloud/
 ├── AGENT.md
 ├── README.md
 ├── ansible/
@@ -31,7 +31,7 @@ phrase-cloud/
 │       │   ├── aws_ec2.yml
 │       │   ├── group_vars/
 │       │   │   ├── all.yaml
-│       │   │   ├── application_phrase_lb.yaml
+│       │   │   ├── application_companyx_lb.yaml
 │       │   │   └── aws_ec2.yml
 │       │   └── localhost.yml
 │       ├── main.yaml
@@ -276,7 +276,7 @@ Rules:
 - Use dynamic AWS inventory
 - Use `roles/general` for generic host bootstrap concerns
 - Use `roles/nginx` only for nginx-specific hosts/configuration
-- Keep dynamic inventory group naming stable (for example `application_phrase_lb` for nginx EC2 hosts)
+- Keep dynamic inventory group naming stable (for example `application_companyx_lb` for nginx EC2 hosts)
 - For SSM connection via `amazon.aws.aws_ssm`, keep `ansible_host` mapped to instance id in inventory compose
 - Keep roles idempotent
 - Avoid hardcoding values
